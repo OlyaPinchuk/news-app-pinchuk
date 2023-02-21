@@ -1,0 +1,20 @@
+.container {
+    margin: 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+
+.news {
+    /* margin: 20px 20px; */
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.load-button {
+    width: 300px;
+}
