@@ -2,17 +2,13 @@ import {useState, useEffect} from 'react';
 import NewsCardComponent from '../newsCardComponent/newsCardComponent';
 import { Button } from '@mui/material';
 import './newsComponent.css'
-import { useSelector } from 'react-redux';
 import IPost from '../../interfaces/postInterface';
-import IStore from '../../interfaces/storeInterface';
+
 
 const NewsComponent = () => {
     const [allPosts, setAllPosts] = useState<IPost[]>([])
     const [posts, setPosts] = useState<IPost[]>([])
     const [page, setPage] = useState<number>(1)
-    const logged = useSelector((store:IStore) => store.userLogged)
-
-
 
     useEffect(() => {
 
@@ -30,7 +26,7 @@ const NewsComponent = () => {
             // @ts-ignore
             setPosts(JSON.parse(localStorage.getItem('posts')).slice((page-1)*10, page*10))
         }
-        
+    // eslint-disable-next-line  
     }, [])
 
     const handleDelete = (id:any) => {

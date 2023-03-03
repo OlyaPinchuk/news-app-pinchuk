@@ -1,5 +1,4 @@
-import {Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button} from '@mui/material';
-import { useEffect } from 'react';
+import {Card, CardActionArea, CardContent, Typography, CardActions, Button} from '@mui/material';
 import { useSelector } from 'react-redux';
 import IStore from '../../interfaces/storeInterface';
 import './newsCardComponent.css'
