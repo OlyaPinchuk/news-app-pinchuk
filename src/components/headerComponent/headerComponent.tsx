@@ -20,7 +20,7 @@ const HeaderComponent = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('posts');
     dispatch(logOutUser());
-    navigate('/');
+    navigate('/news-app-pinchuk');
   }
 
   const handleLngChange = (e:any) => {
@@ -45,7 +45,7 @@ const HeaderComponent = () => {
     <AppBar position="static">
       <Toolbar className="header">
         <Typography className="links" variant="h6" component="div" >
-          <Link className="link" to='/'>{t('home')}</Link>
+          <Link className="link" to='/news-app-pinchuk'>{t('home')}</Link>
           <Link className="link" to='/news'>{t('news')}</Link>
           {logged && 
           <Link className="link" to='/profile'>{t('profile')}</Link>
