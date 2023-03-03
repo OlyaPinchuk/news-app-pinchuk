@@ -1,14 +1,16 @@
 import {Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button} from '@mui/material';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import IStore from '../../interfaces/storeInterface';
 import './newsCardComponent.css'
 
 const NewsCardComponent = ({news, handleDelete}:any) => {
 
-  
+  const logged = useSelector((store:IStore) => store.userLogged)
 
 
     return <Card className='card' sx={{ maxWidth: 345 }}>
     <CardActionArea>
-      <div>{news && news.id}</div>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {news && news.title}
@@ -22,9 +24,11 @@ const NewsCardComponent = ({news, handleDelete}:any) => {
       <Button size="small" color="primary">
         Read more
       </Button>
+      {logged && 
       <Button size="small" color="primary" onClick={()=>handleDelete(news.id)}>
         Delete
       </Button>
+      }
     </CardActions>
   </Card>
 }

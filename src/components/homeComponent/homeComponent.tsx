@@ -1,20 +1,10 @@
-import { useEffect, useState } from "react";
+import './homeComponent.css'
+
 
 const HomeComponent = () => {
 
-    const [posts, setPosts] = useState([])
-
-
-    useEffect(() => {
-        // fetch('https://jsonplaceholder.typicode.com/posts')
-        //     .then(response => response.json())
-        //     .then(json => setPosts(json))
-    }, [])
-
-
-    return <div>
-        home
-        {/* {posts && posts.map((p: any) => <div>{p.title}</div>)} */}
+    return <div id="container">
+        <h1 style={{color: 'darkblue'}}>Future News Website :)</h1>
     </div>
 }
 

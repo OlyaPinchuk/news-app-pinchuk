@@ -1,8 +1,11 @@
 import {Button, TextField} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { redirect } from "react-router";
 import './loginComponent.css'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logUser } from "../../redux/actionCreators";
+import IUser from "../../interfaces/userInterface";
+import IStore from "../../interfaces/storeInterface";
 
 const users = [
     {
@@ -17,31 +20,30 @@ const users = [
 
 const LoginComponent = () => {
 
-    const [logged, setLogged] = useState(false)
+    const logged = useSelector((store:IStore) => store.userLogged)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
 
     const login: any = useRef('')
     const password: any = useRef('')
 
-    const navigate = useNavigate()
 
-
-    useEffect(() :any => {
+    useEffect(() => {
         if (logged) {
-            console.log(logged)
             navigate("/profile")
         }
 
     }, [logged])
 
     const handleFormSubmit = () => {
-        console.log(login.current.value)
-        console.log(password.current.value)
 
-        const user: any = users.find((u:any) => u.username === login.current.value && u.password === password.current.value)
+        const user = users.find((u:IUser) => u.username === login.current.value && u.password === password.current.value)
         if (user) {
-            console.log(user)
             localStorage.setItem('user', JSON.stringify(user))
-            setLogged(true)
+            dispatch(logUser(user))
+        } else {
+            alert('Wrong username or password.')
         }
     } 
 

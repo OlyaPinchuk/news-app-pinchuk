@@ -1,19 +1,51 @@
 import { useEffect, useState } from "react";
+import { Route, redirect, useNavigate} from "react-router-dom";
+import {Button, Card, CardContent, CardMedia, Typography} from '@mui/material';
+import './profileComponent.css'
+import panda from '../../panda.png'
+import IUser from "../../interfaces/userInterface";
 
-const ProfileComponent = () => {
+const ProfileComponent = (props:any) => {
 
-    const [user, setUser] = useState<any>()
+    const [user, setUser] = useState<IUser>()
+    const navigate = useNavigate()
+    
 
     useEffect(() => {
-        // @ts-ignore: Unreachable code error
-        setUser(JSON.parse(localStorage.getItem('user')))
+        if (localStorage.hasOwnProperty('user')) {
+            // @ts-ignore
+            setUser(JSON.parse(localStorage.getItem('user')))
+        } else {
+            navigate("/")
+        }
 
     }, [])
 
 
-    return <div>
-        {user && <div>{user.name}</div>  }
-    </div>
+    return <Card id='profile-card' sx={{ width: 500 }}>
+   
+      <CardContent>
+        <Typography id="name" gutterBottom variant="h5" component="div">
+          {user && user.name} {user && user.surname}
+        </Typography>
+        <CardMedia id='avatar' component='img' image={panda}/>
+        <hr></hr>
+        <Typography variant="body2" color="text.secondary">
+          Age: { user && user.age}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Some info
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Some info
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+            Some info
+        </Typography>
+        <Button>Edit</Button>
+      </CardContent>   
+  </Card>
+    
 }
 
 export default ProfileComponent;

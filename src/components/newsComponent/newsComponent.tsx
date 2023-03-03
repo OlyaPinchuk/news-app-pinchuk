@@ -2,11 +2,15 @@ import {useState, useEffect} from 'react';
 import NewsCardComponent from '../newsCardComponent/newsCardComponent';
 import { Button } from '@mui/material';
 import './newsComponent.css'
+import { useSelector } from 'react-redux';
+import IPost from '../../interfaces/postInterface';
+import IStore from '../../interfaces/storeInterface';
 
 const NewsComponent = () => {
-    const [allPosts, setAllPosts] = useState<any[]>([])
-    const [posts, setPosts] = useState<any[]>([])
-    const [page, setPage] = useState(1)
+    const [allPosts, setAllPosts] = useState<IPost[]>([])
+    const [posts, setPosts] = useState<IPost[]>([])
+    const [page, setPage] = useState<number>(1)
+    const logged = useSelector((store:IStore) => store.userLogged)
 
 
 
@@ -21,9 +25,9 @@ const NewsComponent = () => {
                 setPosts(json.slice((page-1)*10, page*10))
             })
         } else {
-            // @ts-ignore: Unreachable code error
+            // @ts-ignore
             setAllPosts(JSON.parse(localStorage.getItem('posts')))
-            // @ts-ignore: Unreachable code error
+            // @ts-ignore
             setPosts(JSON.parse(localStorage.getItem('posts')).slice((page-1)*10, page*10))
         }
         
@@ -39,8 +43,7 @@ const NewsComponent = () => {
         setAllPosts(prev => {
             prev.splice(foundPostIndex, 1)
             return prev
-        })
-        // allPosts.splice(foundPostIndex, 1)   
+        })  
         console.log(allPosts)
         setPosts(allPosts.slice(0, page*10))
         localStorage.setItem('posts', JSON.stringify(allPosts))
@@ -49,7 +52,7 @@ const NewsComponent = () => {
     
     const handleLoadMore = () => {
 
-        let morePosts: any = [];
+        let morePosts: IPost[] = [];
 
         setPage(prev => {
             morePosts = allPosts.slice(((prev+1)-1)*10, (prev+1)*10)

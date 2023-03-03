@@ -1,0 +1,14 @@
+#profile-card {
+    margin: 30px auto;
+}
+
+#avatar {
+    width: 150px;
+    height: 150px;
+    display: inline;
+    margin-left: 200px;
+}
+
+#name {
+    display: inline;
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router';
 import HomeComponent from './components/homeComponent/homeComponent';
@@ -14,11 +13,9 @@ function App() {
       <Routes>
         <Route path='/' element={<HomeComponent></HomeComponent>} ></Route>
         <Route path='/news' element={<NewsComponent></NewsComponent>} ></Route>
-        <Route path='/profile' element={<ProfileComponent></ProfileComponent>} ></Route>
         <Route path='/login' element={<LoginComponent></LoginComponent>} ></Route>
-
+        <Route path='/profile' element={<ProfileComponent></ProfileComponent>}></Route>
       </Routes>
-      
     </div>
   );
 }
