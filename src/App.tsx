@@ -11,6 +11,7 @@ function App() {
     <div>
       <HeaderComponent></HeaderComponent>
       <Routes>
+        <Route path='/news-app-pinchuk' element={<Navigate to="/" replace />}/>
       
         <Route path='/' element={<HomeComponent></HomeComponent>} ></Route>
         {/* <Route path='/news-app-pinchuk' element={<HomeComponent></HomeComponent>} ></Route> */}

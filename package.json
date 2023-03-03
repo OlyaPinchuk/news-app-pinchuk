@@ -1,7 +1,7 @@
 {
   "name": "news-app-pinchuk",
   "version": "0.1.0",
-  "homepage": "https://OlyaPinchuk.github.io",
+  "homepage": "https://OlyaPinchuk.github.io/news-app-pinchuk",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
