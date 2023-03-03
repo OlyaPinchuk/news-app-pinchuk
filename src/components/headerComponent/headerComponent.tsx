@@ -30,10 +30,13 @@ const HeaderComponent = () => {
   }
 
   useEffect(() => {
-    // @ts-ignore
-    setLng(localStorage.getItem('i18nextLng'));
-    // @ts-ignore
-    i18n.changeLanguage(localStorage.getItem('i18nextLng'));
+    if (localStorage.hasOwnProperty('i18nextLng')) {
+      // @ts-ignore
+      setLng(localStorage.getItem('i18nextLng'));
+      // @ts-ignore
+      i18n.changeLanguage(localStorage.getItem('i18nextLng'));
+    }
+    
   }, [logged])
 
     return <Suspense fallback='Loading...'>
