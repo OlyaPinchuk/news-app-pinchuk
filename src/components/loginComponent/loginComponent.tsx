@@ -20,30 +20,30 @@ const users = [
 
 const LoginComponent = () => {
 
-    const logged = useSelector((store:IStore) => store.userLogged)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const logged: boolean = useSelector((store:IStore) => store.userLogged);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-
-    const login: any = useRef('')
-    const password: any = useRef('')
+    const login: any = useRef('');
+    const password: any = useRef('');
 
 
     useEffect(() => {
         if (logged) {
-            navigate("/profile")
+            navigate("/profile");
         }
 
-    }, [logged])
+    }, [])
 
     const handleFormSubmit = () => {
 
         const user = users.find((u:IUser) => u.username === login.current.value && u.password === password.current.value)
         if (user) {
-            localStorage.setItem('user', JSON.stringify(user))
-            dispatch(logUser(user))
+            localStorage.setItem('user', JSON.stringify(user));
+            dispatch(logUser(user));
+            navigate("/profile");
         } else {
-            alert('Wrong username or password.')
+            alert('Wrong username or password.');
         }
     } 
 

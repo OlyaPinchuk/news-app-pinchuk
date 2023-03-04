@@ -1,22 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate} from "react-router-dom";
 import {Button, Card, CardContent, CardMedia, Typography} from '@mui/material';
 import './profileComponent.css'
 import panda from '../../panda.png'
-import IUser from "../../interfaces/userInterface";
+import { useDispatch, useSelector } from "react-redux";
+import IStore from "../../interfaces/storeInterface";
+import { logUser } from "../../redux/actionCreators";
+import IUser from '../../interfaces/userInterface'
 
 const ProfileComponent = (props:any) => {
 
-    const [user, setUser] = useState<IUser>()
-    const navigate = useNavigate()
+    const user: IUser | undefined = useSelector((store: IStore) => store.user)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     
 
     useEffect(() => {
         if (localStorage.hasOwnProperty('user')) {
             // @ts-ignore
-            setUser(JSON.parse(localStorage.getItem('user')))
+            dispatch(logUser(JSON.parse(localStorage.getItem('user'))));
         } else {
-            navigate("/")
+            navigate("/");
         }
 
     }, [])

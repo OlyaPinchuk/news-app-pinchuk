@@ -6,9 +6,9 @@ import IPost from '../../interfaces/postInterface';
 
 
 const NewsComponent = () => {
-    const [allPosts, setAllPosts] = useState<IPost[]>([])
-    const [posts, setPosts] = useState<IPost[]>([])
-    const [page, setPage] = useState<number>(1)
+    const [allPosts, setAllPosts] = useState<IPost[]>([]);
+    const [posts, setPosts] = useState<IPost[]>([]);
+    const [page, setPage] = useState<number>(1);
 
     useEffect(() => {
 
@@ -16,33 +16,32 @@ const NewsComponent = () => {
             fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json())
             .then(json => {
-                console.log(json)
-                setAllPosts(json)
-                setPosts(json.slice((page-1)*10, page*10))
+                setAllPosts(json);
+                setPosts(json.slice((page-1)*10, page*10));
             })
         } else {
             // @ts-ignore
-            setAllPosts(JSON.parse(localStorage.getItem('posts')))
+            setAllPosts(JSON.parse(localStorage.getItem('posts')));
             // @ts-ignore
-            setPosts(JSON.parse(localStorage.getItem('posts')).slice((page-1)*10, page*10))
+            setPosts(JSON.parse(localStorage.getItem('posts')).slice((page-1)*10, page*10));
         }
-    // eslint-disable-next-line  
+    
     }, [])
 
-    const handleDelete = (id:any) => {
-        console.log(id)
+    const handleDelete = (id:number) => {
         fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
           method: 'DELETE',
-        })
+        });
 
-        const foundPostIndex = allPosts.findIndex(p => p.id === id)
+        const foundPostIndex = allPosts.findIndex(p => p.id === id);
+
         setAllPosts(prev => {
-            prev.splice(foundPostIndex, 1)
+            prev.splice(foundPostIndex, 1);
             return prev
-        })  
-        console.log(allPosts)
-        setPosts(allPosts.slice(0, page*10))
-        localStorage.setItem('posts', JSON.stringify(allPosts))
+        });  
+        
+        setPosts(allPosts.slice(0, page*10));
+        localStorage.setItem('posts', JSON.stringify(allPosts));
       }
 
     
@@ -51,18 +50,17 @@ const NewsComponent = () => {
         let morePosts: IPost[] = [];
 
         setPage(prev => {
-            morePosts = allPosts.slice(((prev+1)-1)*10, (prev+1)*10)
+            morePosts = allPosts.slice(((prev+1)-1)*10, (prev+1)*10);
             return (prev+1)
-        })
+        });
         
-        setPosts(prev => [...prev, ...morePosts])
-        
+        setPosts(prev => [...prev, ...morePosts]);
     }
 
 
     return <div className='container'>
         <div className='news'>
-            {posts.length > 0 && posts.map((p: any) => <NewsCardComponent key={p.id} news={p} handleDelete={handleDelete}></NewsCardComponent>)}
+            {posts.length > 0 && posts.map((p: IPost) => <NewsCardComponent key={p.id} news={p} handleDelete={handleDelete}></NewsCardComponent>)}
         </div>
         <Button className='load-button' onClick={handleLoadMore}>Load more</Button>
     </div>

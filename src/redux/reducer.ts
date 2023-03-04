@@ -4,7 +4,7 @@ import IStore from "../interfaces/storeInterface";
 
 const initialState: IStore = {
     userLogged: localStorage.hasOwnProperty('user'),
-    user: {}
+    user: undefined
 
 }
 
