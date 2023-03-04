@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import HomeComponent from './components/homeComponent/homeComponent';
 import NewsComponent from './components/newsComponent/newsComponent';
 import ProfileComponent from './components/profileComponent/profileComponent';
@@ -16,6 +16,10 @@ function App() {
         <Route path='/news' element={<NewsComponent></NewsComponent>} ></Route>
         <Route path='/login' element={<LoginComponent></LoginComponent>} ></Route>
         <Route path='/profile' element={<ProfileComponent></ProfileComponent>}></Route>
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
       </Routes>
     </div>
   );

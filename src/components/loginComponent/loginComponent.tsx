@@ -10,7 +10,7 @@ import IStore from "../../interfaces/storeInterface";
 const users = [
     {
         id: 1,
-        username: 'username',
+        username: 'admin',
         password: '12345',
         name: 'Poll',
         surname: 'James',
